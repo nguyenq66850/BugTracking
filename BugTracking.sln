@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracking", "BugTracking\BugTracking.csproj", "{DC5A0D08-E869-4A3D-9E00-69840A98188A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC5A0D08-E869-4A3D-9E00-69840A98188A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5A0D08-E869-4A3D-9E00-69840A98188A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5A0D08-E869-4A3D-9E00-69840A98188A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5A0D08-E869-4A3D-9E00-69840A98188A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
