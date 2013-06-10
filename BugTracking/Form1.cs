@@ -57,42 +57,57 @@ namespace BugTracking
 
                 // Parse the string for block of lines
                 string s = blockTBox.Text + "-";
-                string[] arr = s.Split(new Char[] { '-', ' ', ',', '.', ':', '\t' });
+                string[] arr = s.Split(new Char[] { ';', ' ', ',', '.', ':', '\t' });
+                int[] starts = new int[100];
+                int[] ends = new int[100];
                 int start;
                 int end;
                 string line = "";
+                int i;
+                int block;
 
                 try
                 {
-                    start = Convert.ToInt32(arr[0]);
-                    try
+                    for (i = 0; i < arr.Length; i++)
                     {
-                        end = Convert.ToInt32(arr[1]);
+                        arr[i] = arr[i] + "-";
+                        string[] startend = arr[i].Split('-');
+                        starts[i] = Convert.ToInt32(startend[0]);
+                        try
+                        {
+                            ends[i] = Convert.ToInt32(startend[1]);
+                        }
+                        catch
+                        {
+                            ends[i] = starts[i];
+                        }
+                        System.Diagnostics.Debug.WriteLine(String.Format("{0}-{1}", starts[i], ends[i]));
                     }
-                    catch
-                    {
-                        end = start;
-                    }
-
-                    System.Diagnostics.Debug.WriteLine(String.Format("{0}-{1}", start, end));
 
                     try
                     {
                         System.IO.StreamReader sr = new System.IO.StreamReader(fileTBox.Text);
-                        int i = 0;
-                        while (!sr.EndOfStream && i < start)
-                        {
-                            i++;
-                            line = sr.ReadLine();
-                        }
-
                         result = fileTBox.Text;
+                        i = 0;
 
-                        while (!sr.EndOfStream && i <= end)
+                        for (block = 0; block < arr.Length; block++)
                         {
-                            result = result + String.Format("\n{0}\t{1}", i, line);
-                            i++;
-                            line = sr.ReadLine();
+                            start = starts[block];
+                            end = ends[block];
+
+                            while (!sr.EndOfStream && i < start)
+                            {
+                                i++;
+                                line = sr.ReadLine();
+                            }
+
+                            while (!sr.EndOfStream && i <= end)
+                            {
+                                result = result + String.Format("\n{0}\t{1}", i, line);
+                                i++;
+                                line = sr.ReadLine();
+                            }
+                            result = result + "\n";
                         }
                     }
                     catch (Exception ex)
@@ -105,7 +120,7 @@ namespace BugTracking
                     MessageBox.Show(String.Format("Entry {0}:\nWrong number format", id + 1));
                 }
 
-                result = result + "\n\n";
+                result = result + "\n";
                 
                 return result;
             }
