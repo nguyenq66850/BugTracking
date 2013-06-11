@@ -97,9 +97,9 @@
             this.blockLabel.AutoSize = true;
             this.blockLabel.Location = new System.Drawing.Point(150, 60);
             this.blockLabel.Name = "blockLabel";
-            this.blockLabel.Size = new System.Drawing.Size(70, 13);
+            this.blockLabel.Size = new System.Drawing.Size(75, 13);
             this.blockLabel.TabIndex = 6;
-            this.blockLabel.Text = "Block of lines";
+            this.blockLabel.Text = "Blocks of lines";
             // 
             // Form1
             // 
