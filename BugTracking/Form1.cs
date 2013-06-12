@@ -53,11 +53,11 @@ namespace BugTracking
 
             public override string ToString()
             {
+                const string blocksep = "\n++++++++++++++++++++"; // line to separate blocks of lines
                 string result = "";
 
                 // Parse the string for block of lines
-                string s = blockTBox.Text + "-";
-                string[] arr = s.Split(new Char[] { ';', ' ', ',', '.', ':', '\t' });
+                string[] arr = blockTBox.Text.Split(new Char[] { ';', ' ', ',', '.', ':', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                 int[] starts = new int[100];
                 int[] ends = new int[100];
                 int start;
@@ -87,7 +87,7 @@ namespace BugTracking
                     try
                     {
                         System.IO.StreamReader sr = new System.IO.StreamReader(fileTBox.Text);
-                        result = fileTBox.Text;
+                        result = fileTBox.Text + blocksep;
                         i = 0;
 
                         for (block = 0; block < arr.Length; block++)
@@ -103,11 +103,11 @@ namespace BugTracking
 
                             while (!sr.EndOfStream && i <= end)
                             {
-                                result = result + String.Format("\n{0}\t{1}", i, line);
+                                result = result + String.Format("\n{0,7} │{1}", i, line);
                                 i++;
                                 line = sr.ReadLine();
                             }
-                            result = result + "\n";
+                            result = result + blocksep;
                         }
                     }
                     catch (Exception ex)
